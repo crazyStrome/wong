@@ -1,0 +1,5 @@
+
+namespace Wong
+{
+    void Print();
+};
