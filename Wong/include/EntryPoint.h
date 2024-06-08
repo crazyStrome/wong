@@ -1,4 +1,3 @@
-#pragma once
 
 extern Wong::Application *Wong::CreateApplication();
 

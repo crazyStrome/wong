@@ -1,12 +1,7 @@
 #pragma once
-
+#include "wgpch.h"
 #include "Core.h"
-
-#include <string>
-#include <functional>
-
 #include "Log.h"
-#include <spdlog/fmt/bundled/ostream.h>
 
 #define FORMAT_EVENT_FUNC(type)                                                      \
     template <>                                                                      \

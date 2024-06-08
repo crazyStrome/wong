@@ -16,6 +16,9 @@ project "Wong"
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
     
+    pchheader "wgpch.h"
+    pchsource "Wong/include/wgpch.h"
+    
     files {
         "%{prj.name}/src/**.cc"
     }
@@ -44,7 +47,7 @@ project "Sandbox"
     language "C++"
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
-    
+
     files {
         "%{prj.name}/src/**.cc"
     }

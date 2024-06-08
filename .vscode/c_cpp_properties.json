@@ -6,6 +6,7 @@
                 "${workspaceFolder}/Wong/include",
                 "${workspaceFolder}/Wong/vendor/spdlog/include"
             ],
+            "forcedInclude": [],
             "defines": [],
             "cStandard": "c17",
             "cppStandard": "gnu++17",

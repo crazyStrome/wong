@@ -19,6 +19,9 @@ endif
 # #############################################
 
 RESCOMP = windres
+PCH = include/wgpch.h
+PCH_PLACEHOLDER = $(OBJDIR)/$(notdir $(PCH))
+GCH = $(PCH_PLACEHOLDER).gch
 INCLUDES += -Iinclude -Ivendor/spdlog/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
@@ -135,10 +138,10 @@ endif
 
 $(OBJDIR)/Application.o: src/Application.cc
 	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Log.o: src/Log.cc
 	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
