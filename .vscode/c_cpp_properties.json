@@ -4,10 +4,15 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/Wong/include",
-                "${workspaceFolder}/Wong/vendor/spdlog/include"
+                "${workspaceFolder}/Platform/Linux/include",
+                "${workspaceFolder}/Wong/vendor/spdlog/include",
+                "${workspaceFolder}/Wong/vendor/GLFW/include"
             ],
             "forcedInclude": [],
-            "defines": [],
+            "defines": [
+                "WG_ENABLE_ASSERTS",
+                "WG_PLATFORM_LINUX"
+            ],
             "cStandard": "c17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-x64"
