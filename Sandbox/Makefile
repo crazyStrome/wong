@@ -37,7 +37,7 @@ endef
 ifeq ($(config),debug)
 TARGETDIR = ../bin/Debug-linux-x86_64/Sandbox
 TARGET = $(TARGETDIR)/Sandbox
-OBJDIR = obj/Debug
+OBJDIR = ../bin-int/Debug-linux-x86_64/Sandbox
 DEFINES += -DHZ_DEBUG
 LIBS += ../bin/Debug-linux-x86_64/Wong/libWong.so
 LDDEPS += ../bin/Debug-linux-x86_64/Wong/libWong.so
@@ -45,7 +45,7 @@ LDDEPS += ../bin/Debug-linux-x86_64/Wong/libWong.so
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-linux-x86_64/Sandbox
 TARGET = $(TARGETDIR)/Sandbox
-OBJDIR = obj/Release
+OBJDIR = ../bin-int/Release-linux-x86_64/Sandbox
 DEFINES += -DHZ_RELEASE
 LIBS += ../bin/Release-linux-x86_64/Wong/libWong.so
 LDDEPS += ../bin/Release-linux-x86_64/Wong/libWong.so
@@ -53,7 +53,7 @@ LDDEPS += ../bin/Release-linux-x86_64/Wong/libWong.so
 else ifeq ($(config),dist)
 TARGETDIR = ../bin/Dist-linux-x86_64/Sandbox
 TARGET = $(TARGETDIR)/Sandbox
-OBJDIR = obj/Dist
+OBJDIR = ../bin-int/Dist-linux-x86_64/Sandbox
 DEFINES += -DHZ_DIST
 LIBS += ../bin/Dist-linux-x86_64/Wong/libWong.so
 LDDEPS += ../bin/Dist-linux-x86_64/Wong/libWong.so

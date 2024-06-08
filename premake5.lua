@@ -14,6 +14,7 @@ project "Wong"
     kind "SharedLib"
     language "C++"
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
+    objdir("bin-int/" .. outputdir .. "/%{prj.name}")
     
     files {
         "%{prj.name}/src/**.cc"
@@ -42,6 +43,7 @@ project "Sandbox"
     kind "ConsoleApp"
     language "C++"
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
+    objdir("bin-int/" .. outputdir .. "/%{prj.name}")
     
     files {
         "%{prj.name}/src/**.cc"

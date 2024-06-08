@@ -39,19 +39,19 @@ endef
 ifeq ($(config),debug)
 TARGETDIR = ../bin/Debug-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
-OBJDIR = obj/Debug
+OBJDIR = ../bin-int/Debug-linux-x86_64/Wong
 DEFINES += -DHZ_DEBUG
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
-OBJDIR = obj/Release
+OBJDIR = ../bin-int/Release-linux-x86_64/Wong
 DEFINES += -DHZ_RELEASE
 
 else ifeq ($(config),dist)
 TARGETDIR = ../bin/Dist-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
-OBJDIR = obj/Dist
+OBJDIR = ../bin-int/Dist-linux-x86_64/Wong
 DEFINES += -DHZ_DIST
 
 endif

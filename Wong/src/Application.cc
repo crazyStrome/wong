@@ -11,7 +11,10 @@ namespace Wong
     }
     void Application::Run()
     {
-        std::cout << "Application run\n";
+        auto we = WindowResizeEvent(1200, 720);
+        Event &e = we;
+        WG_TRACE("Init event");
+        WG_TRACE(e);
         while (true)
         {
         }
