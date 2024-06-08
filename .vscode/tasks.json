@@ -1,0 +1,62 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "构建 wong",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/src/Wong/*.cc",
+                "-I",
+                "${workspaceFolder}/include",
+                "-fPIC",
+                "-shared",
+                "-o",
+                "${workspaceFolder}/bin/libwong.so"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        },
+        {
+            "type": "cppbuild",
+            "label": "构建 sanbox",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/src/Sandbox/*.cc",
+                "-I",
+                "${workspaceFolder}/include",
+                "-L",
+                "${workspaceFolder}/bin/",
+                "-Wl,-rpath",
+                "${workspaceFolder}/bin/",
+                "-lwong",
+                "-o",
+                "${workspaceFolder}/bin/Sandbox"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        }
+    ],
+    "version": "2.0.0"
+}
