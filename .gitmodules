@@ -1,0 +1,3 @@
+[submodule "Wong/vendor/spdlog"]
+	path = Wong/vendor/spdlog
+	url = https://github.com/gabime/spdlog

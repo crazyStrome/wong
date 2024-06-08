@@ -3,8 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/Wong/include",
+                "${workspaceFolder}/Wong/vendor/spdlog/include"
             ],
             "defines": [],
             "cStandard": "c17",
