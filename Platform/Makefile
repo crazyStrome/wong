@@ -19,17 +19,17 @@ endif
 # #############################################
 
 RESCOMP = windres
-PCH = include/wgpch.h
+PCH = ../Wong/include/wgpch.h
 PCH_PLACEHOLDER = $(OBJDIR)/$(notdir $(PCH))
 GCH = $(PCH_PLACEHOLDER).gch
-INCLUDES += -Iinclude -Ivendor/spdlog/include -Ivendor/GLFW/include -I../Platform/Linux/include
+INCLUDES += -I../Wong/include -I../Wong/vendor/GLFW/include -I../Wong/vendor/spdlog/include -ILinux/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64 -shared -Wl,-soname=libWong.so
-LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
+ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64
+LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef
 define PRELINKCMDS
@@ -38,28 +38,28 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),debug)
-TARGETDIR = ../bin/Debug-linux-x86_64/Wong
-TARGET = $(TARGETDIR)/libWong.so
-OBJDIR = ../bin-int/Debug-linux-x86_64/Wong
+TARGETDIR = ../bin/Debug-linux-x86_64/Platform
+TARGET = $(TARGETDIR)/libPlatform.a
+OBJDIR = ../bin-int/Debug-linux-x86_64/Platform
 DEFINES += -DWG_ENABLE_ASSERTS -DWG_DEBUG -DWG_PLATFORM_LINUX
-LIBS += vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a -lGL
-LDDEPS += vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a
+LIBS += ../Wong/vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a -lGL
+LDDEPS += ../Wong/vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a
 
 else ifeq ($(config),release)
-TARGETDIR = ../bin/Release-linux-x86_64/Wong
-TARGET = $(TARGETDIR)/libWong.so
-OBJDIR = ../bin-int/Release-linux-x86_64/Wong
+TARGETDIR = ../bin/Release-linux-x86_64/Platform
+TARGET = $(TARGETDIR)/libPlatform.a
+OBJDIR = ../bin-int/Release-linux-x86_64/Platform
 DEFINES += -DWG_RELEASE -DWG_PLATFORM_LINUX
-LIBS += vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a -lGL
-LDDEPS += vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a
+LIBS += ../Wong/vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a -lGL
+LDDEPS += ../Wong/vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a
 
 else ifeq ($(config),dist)
-TARGETDIR = ../bin/Dist-linux-x86_64/Wong
-TARGET = $(TARGETDIR)/libWong.so
-OBJDIR = ../bin-int/Dist-linux-x86_64/Wong
+TARGETDIR = ../bin/Dist-linux-x86_64/Platform
+TARGET = $(TARGETDIR)/libPlatform.a
+OBJDIR = ../bin-int/Dist-linux-x86_64/Platform
 DEFINES += -DWG_DIST -DWG_PLATFORM_LINUX
-LIBS += vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a -lGL
-LDDEPS += vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a
+LIBS += ../Wong/vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a -lGL
+LDDEPS += ../Wong/vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a
 
 endif
 
@@ -73,14 +73,8 @@ endif
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/Application.o
 GENERATED += $(OBJDIR)/LinuxWindow.o
-GENERATED += $(OBJDIR)/Log.o
-GENERATED += $(OBJDIR)/Window.o
-OBJECTS += $(OBJDIR)/Application.o
 OBJECTS += $(OBJDIR)/LinuxWindow.o
-OBJECTS += $(OBJDIR)/Log.o
-OBJECTS += $(OBJDIR)/Window.o
 
 # Rules
 # #############################################
@@ -90,7 +84,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking Wong
+	@echo Linking Platform
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -111,7 +105,7 @@ else
 endif
 
 clean:
-	@echo Cleaning Wong
+	@echo Cleaning Platform
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
@@ -144,16 +138,7 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/LinuxWindow.o: ../Platform/Linux/src/LinuxWindow.cc
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Application.o: src/Application.cc
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Log.o: src/Log.cc
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Window.o: src/Window.cc
+$(OBJDIR)/LinuxWindow.o: Linux/src/LinuxWindow.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

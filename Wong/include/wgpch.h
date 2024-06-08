@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WG_PCH_H
+#define WG_PCH_H
 
 #include <iostream>
 #include <memory>
@@ -11,3 +12,5 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+
+#endif

@@ -19,7 +19,7 @@ endif
 # #############################################
 
 RESCOMP = windres
-INCLUDES += -I../Wong/include -I../Wong/vendor/spdlog/include
+INCLUDES += -I../Wong/include -I../Wong/vendor/spdlog/include -I../Platform/Linux/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
@@ -38,7 +38,7 @@ ifeq ($(config),debug)
 TARGETDIR = ../bin/Debug-linux-x86_64/Sandbox
 TARGET = $(TARGETDIR)/Sandbox
 OBJDIR = ../bin-int/Debug-linux-x86_64/Sandbox
-DEFINES += -DHZ_DEBUG
+DEFINES += -DWG_ENABLE_ASSERTS -DWG_DEBUG -DWG_PLATFORM_LINUX
 LIBS += ../bin/Debug-linux-x86_64/Wong/libWong.so
 LDDEPS += ../bin/Debug-linux-x86_64/Wong/libWong.so
 
@@ -46,7 +46,7 @@ else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-linux-x86_64/Sandbox
 TARGET = $(TARGETDIR)/Sandbox
 OBJDIR = ../bin-int/Release-linux-x86_64/Sandbox
-DEFINES += -DHZ_RELEASE
+DEFINES += -DWG_RELEASE -DWG_PLATFORM_LINUX
 LIBS += ../bin/Release-linux-x86_64/Wong/libWong.so
 LDDEPS += ../bin/Release-linux-x86_64/Wong/libWong.so
 
@@ -54,7 +54,7 @@ else ifeq ($(config),dist)
 TARGETDIR = ../bin/Dist-linux-x86_64/Sandbox
 TARGET = $(TARGETDIR)/Sandbox
 OBJDIR = ../bin-int/Dist-linux-x86_64/Sandbox
-DEFINES += -DHZ_DIST
+DEFINES += -DWG_DIST -DWG_PLATFORM_LINUX
 LIBS += ../bin/Dist-linux-x86_64/Wong/libWong.so
 LDDEPS += ../bin/Dist-linux-x86_64/Wong/libWong.so
 

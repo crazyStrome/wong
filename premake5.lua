@@ -9,6 +9,12 @@ workspace "Wong"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+Includedir = {}
+Includedir["GLFW"] = "Wong/vendor/GLFW/include"
+Includedir["spdlog"] = "Wong/vendor/spdlog/include"
+
+include "Wong/vendor/GLFW"
+
 project "Wong"
     location "Wong"
     kind "SharedLib"
@@ -25,20 +31,40 @@ project "Wong"
     
     includedirs {
         "%{prj.name}/include",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{Includedir.GLFW}"
+    }
+
+    links {
+        "GLFW",
+        "GL",
     }
     
     filter { "configurations:Debug" }
-        defines "HZ_DEBUG"
+        defines {
+            "WG_ENABLE_ASSERTS",
+            "WG_DEBUG"
+        }
         symbols "On"
     
     filter "configurations:Release"
-        defines "HZ_RELEASE"
+        defines "WG_RELEASE"
         symbols "On"
     
     filter "configurations:Dist"
-        defines "HZ_DIST"
+        defines "WG_DIST"
         symbols "On"
+        
+    filter "system:linux" 
+        includedirs {
+            "Platform/Linux/include"
+        }
+        files {
+            "Platform/Linux/src/**.cc"
+        }
+        defines {
+            "WG_PLATFORM_LINUX"
+        }
     
     
 project "Sandbox"
@@ -58,17 +84,26 @@ project "Sandbox"
     }
     
     links {
-        "Wong"
+        "Wong",
     }
     filter "configurations:Debug"
-        defines "HZ_DEBUG"
+        defines {
+            "WG_ENABLE_ASSERTS",
+            "WG_DEBUG"
+        }
         symbols "On"
     
     filter "configurations:Release"
-        defines "HZ_RELEASE"
+        defines "WG_RELEASE"
         symbols "On"
     
     filter "configurations:Dist"
-        defines "HZ_DIST"
+        defines "WG_DIST"
         symbols "On"
+        
+	filter "system:linux" 
+        defines "WG_PLATFORM_LINUX"
+        includedirs {
+            "Platform/Linux/include"
+        }
     
