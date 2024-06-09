@@ -70,6 +70,7 @@ namespace Wong
 
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
+    public:
         MouseButtonPressedEvent(int button)
             : MouseButtonEvent(button) {}
         std::string ToString() const override

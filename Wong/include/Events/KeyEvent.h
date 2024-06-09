@@ -27,11 +27,18 @@ namespace Wong
 
         inline int GetRepeatCount() const { return m_RepeatCount; }
 
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyPressedEvent: " << m_KeyCode << ", count: " << m_RepeatCount;
+            return ss.str();
+        }
         EVENT_CLASS_TYPE(KeyPressed)
     };
 
-    class KeyReleasedEvent : KeyEvent
+    class KeyReleasedEvent : public KeyEvent
     {
+    public:
         KeyReleasedEvent(int keyCode)
             : KeyEvent(keyCode) {}
 

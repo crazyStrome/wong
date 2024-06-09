@@ -3,6 +3,8 @@
 #include "Log.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
+#include "Events/MouseEvent.h"
+#include "Events/KeyEvent.h"
 
 // -------------- entry point-----------------
 #include "EntryPoint.h"
