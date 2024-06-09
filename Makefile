@@ -29,9 +29,15 @@ endif
 
 PROJECTS := GLFW Wong Sandbox
 
-.PHONY: all clean help $(PROJECTS) 
+.PHONY: all clean help $(PROJECTS) app deps engine
 
 all: $(PROJECTS)
+
+app: Sandbox
+
+deps: GLFW
+
+engine: Wong
 
 GLFW:
 ifneq (,$(GLFW_config))

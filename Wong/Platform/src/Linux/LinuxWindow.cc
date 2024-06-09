@@ -1,4 +1,4 @@
-#include "LinuxWindow.h"
+#include "Linux/LinuxWindow.h"
 #include <Core.h>
 
 namespace Wong

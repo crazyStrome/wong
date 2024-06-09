@@ -22,7 +22,7 @@ RESCOMP = windres
 PCH = include/wgpch.h
 PCH_PLACEHOLDER = $(OBJDIR)/$(notdir $(PCH))
 GCH = $(PCH_PLACEHOLDER).gch
-INCLUDES += -Iinclude -Ivendor/spdlog/include -Ivendor/GLFW/include -I../Platform/Linux/include
+INCLUDES += -Iinclude -Ivendor/spdlog/include -Ivendor/GLFW/include -IPlatform/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g
@@ -42,24 +42,24 @@ TARGETDIR = ../bin/Debug-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
 OBJDIR = ../bin-int/Debug-linux-x86_64/Wong
 DEFINES += -DWG_ENABLE_ASSERTS -DWG_DEBUG -DWG_PLATFORM_LINUX
-LIBS += vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a -lGL
-LDDEPS += vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a
+LIBS += ../bin/Debug-linux-x86_64/GLFW/libGLFW.a -lGL
+LDDEPS += ../bin/Debug-linux-x86_64/GLFW/libGLFW.a
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
 OBJDIR = ../bin-int/Release-linux-x86_64/Wong
 DEFINES += -DWG_RELEASE -DWG_PLATFORM_LINUX
-LIBS += vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a -lGL
-LDDEPS += vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a
+LIBS += ../bin/Release-linux-x86_64/GLFW/libGLFW.a -lGL
+LDDEPS += ../bin/Release-linux-x86_64/GLFW/libGLFW.a
 
 else ifeq ($(config),dist)
 TARGETDIR = ../bin/Dist-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
 OBJDIR = ../bin-int/Dist-linux-x86_64/Wong
 DEFINES += -DWG_DIST -DWG_PLATFORM_LINUX
-LIBS += vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a -lGL
-LDDEPS += vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a
+LIBS += ../bin/Dist-linux-x86_64/GLFW/libGLFW.a -lGL
+LDDEPS += ../bin/Dist-linux-x86_64/GLFW/libGLFW.a
 
 endif
 
@@ -144,7 +144,7 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/LinuxWindow.o: ../Platform/Linux/src/LinuxWindow.cc
+$(OBJDIR)/LinuxWindow.o: Platform/src/Linux/LinuxWindow.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Application.o: src/Application.cc

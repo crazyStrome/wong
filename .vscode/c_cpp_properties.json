@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/Wong/include",
-                "${workspaceFolder}/Platform/Linux/include",
+                "${workspaceFolder}/Wong/Platform/include",
                 "${workspaceFolder}/Wong/vendor/spdlog/include",
                 "${workspaceFolder}/Wong/vendor/GLFW/include"
             ],

@@ -1,7 +1,7 @@
 #include "Window.h"
 
 #ifdef WG_PLATFORM_LINUX
-#include "LinuxWindow.h"
+#include "Linux/LinuxWindow.h"
 #endif
 
 namespace Wong
