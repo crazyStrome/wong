@@ -14,12 +14,14 @@ project "Wong"
     includedirs {
         "include",
         "%{Includedir.spdlog}",
-        "%{Includedir.GLFW}"
+        "%{Includedir.GLFW}",
+        "%{Includedir.Glad}"
     }
 
     links {
         "GLFW",
         "GL",
+        "Glad",
     }
     
     filter { "configurations:Debug" }
@@ -45,6 +47,7 @@ project "Wong"
             "Platform/src/Linux/**.cc"
         }
         defines {
-            "WG_PLATFORM_LINUX"
+            "WG_PLATFORM_LINUX",
+            "GLFW_INCLUDE_NONE",
         }
  
