@@ -15,7 +15,7 @@ namespace Wong
         }
         inline static std::shared_ptr<spdlog::logger> &GetClientLogger()
         {
-            return s_CoreLogger;
+            return s_ClientLogger;
         }
 
     private:
