@@ -8,6 +8,7 @@
                 "${workspaceFolder}/Wong/vendor/spdlog/include",
                 "${workspaceFolder}/Wong/vendor/Glad/include",
                 "${workspaceFolder}/Wong/vendor/ImGui",
+                "${workspaceFolder}/Wong/vendor/glm",
                 "${workspaceFolder}/Wong/vendor/GLFW/include"
             ],
             "forcedInclude": [],

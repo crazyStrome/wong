@@ -7,3 +7,6 @@
 [submodule "Wong/vendor/ImGui"]
 	path = Wong/vendor/ImGui
 	url = https://github.com/crazyStrome/imgui
+[submodule "Wong/vendor/glm"]
+	path = Wong/vendor/glm
+	url = https://github.com/g-truc/glm

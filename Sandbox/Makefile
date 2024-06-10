@@ -19,7 +19,7 @@ endif
 # #############################################
 
 RESCOMP = windres
-INCLUDES += -I../Wong/include -I../Wong/vendor/spdlog/include
+INCLUDES += -I../Wong/include -I../Wong/vendor/spdlog/include -I../Wong/vendor/glm
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g

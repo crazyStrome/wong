@@ -4,7 +4,9 @@ class ExapmleLayer : public Wong::Layer
 {
 public:
     ExapmleLayer()
-        : Layer("Exapmle") {}
+        : Layer("Exapmle")
+    {
+    }
 
     void OnUpdate() override
     {

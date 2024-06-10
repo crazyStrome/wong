@@ -11,6 +11,7 @@ project "Sandbox"
     includedirs {
         "%{Includedir.Wong}",
         "%{Includedir.spdlog}",
+        "%{Includedir.glm}",
     }
     
     links {

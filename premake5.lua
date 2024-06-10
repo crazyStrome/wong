@@ -14,6 +14,7 @@ Includedir["GLFW"] = "%{wks.location}/Wong/vendor/GLFW/include"
 Includedir["spdlog"] = "%{wks.location}/Wong/vendor/spdlog/include"
 Includedir["Glad"] = "%{wks.location}/Wong/vendor/Glad/include"
 Includedir["ImGui"] = "%{wks.location}/Wong/vendor/ImGui"
+Includedir["glm"] = "%{wks.location}/Wong/vendor/glm"
 Includedir["Wong"] = "%{wks.location}/Wong/include"
 Includedir["LinuxPlatform"] = "%{wks.location}/Wong/Platform/include"
 

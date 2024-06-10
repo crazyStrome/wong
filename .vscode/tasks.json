@@ -14,6 +14,8 @@
                 "${workspaceFolder}/Wong/Platform/include",
                 "-I",
                 "${workspaceFolder}/Wong/vendor/spdlog/include",
+                "-I",
+                "${workspaceFolder}/Wong/vendor/glm",
                 "-L",
                 "${workspaceFolder}/bin/Debug-linux-x86_64/Wong",
                 "-Wl,-rpath",

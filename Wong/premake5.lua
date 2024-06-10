@@ -9,6 +9,8 @@ project "Wong"
     
     files {
         "src/**.cc",
+        "src/vendor/glm/glm/**.hpp",
+        "src/vendor/glm/glm/**.inl",
         "Platform/src/OpenGL/*.cc",
     }
     
@@ -18,6 +20,7 @@ project "Wong"
         "%{Includedir.GLFW}",
         "%{Includedir.Glad}",
         "%{Includedir.ImGui}",
+        "%{Includedir.glm}",
     }
 
     links {
