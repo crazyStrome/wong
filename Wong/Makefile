@@ -74,8 +74,8 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/Application.o
+GENERATED += $(OBJDIR)/ImGuiBuild.o
 GENERATED += $(OBJDIR)/ImGuiLayer.o
-GENERATED += $(OBJDIR)/ImGuiOpenGLRenderer.o
 GENERATED += $(OBJDIR)/Layer.o
 GENERATED += $(OBJDIR)/LayerStack.o
 GENERATED += $(OBJDIR)/LinuxInput.o
@@ -83,8 +83,8 @@ GENERATED += $(OBJDIR)/LinuxWindow.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Window.o
 OBJECTS += $(OBJDIR)/Application.o
+OBJECTS += $(OBJDIR)/ImGuiBuild.o
 OBJECTS += $(OBJDIR)/ImGuiLayer.o
-OBJECTS += $(OBJDIR)/ImGuiOpenGLRenderer.o
 OBJECTS += $(OBJDIR)/Layer.o
 OBJECTS += $(OBJDIR)/LayerStack.o
 OBJECTS += $(OBJDIR)/LinuxInput.o
@@ -160,10 +160,10 @@ $(OBJDIR)/LinuxInput.o: Platform/src/Linux/LinuxInput.cc
 $(OBJDIR)/LinuxWindow.o: Platform/src/Linux/LinuxWindow.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ImGuiOpenGLRenderer.o: Platform/src/OpenGL/ImGuiOpenGLRenderer.cc
+$(OBJDIR)/Application.o: src/Application.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Application.o: src/Application.cc
+$(OBJDIR)/ImGuiBuild.o: src/ImGui/ImGuiBuild.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/ImGuiLayer.o: src/ImGui/ImGuiLayer.cc

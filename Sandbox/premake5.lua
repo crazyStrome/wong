@@ -12,6 +12,7 @@ project "Sandbox"
         "%{Includedir.Wong}",
         "%{Includedir.spdlog}",
         "%{Includedir.glm}",
+        "%{Includedir.ImGui}",
     }
     
     links {

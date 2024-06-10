@@ -1,4 +1,5 @@
 #include <Wong.h>
+#include "imgui.h"
 
 class ExapmleLayer : public Wong::Layer
 {
@@ -19,6 +20,12 @@ public:
     {
         // WG_TRACE("{0}", event);
     }
+    void OnImGuiRender() override
+    {
+        ImGui::Begin("Exapmle layer");
+        ImGui::Text("Hello exapmle layer");
+        ImGui::End();
+    }
 };
 
 class Sandbox : public Wong::Application
@@ -28,7 +35,6 @@ public:
     Sandbox()
     {
         PushLayer(new ExapmleLayer());
-        PushOverlay(new Wong::ImGuiLayer());
     }
     ~Sandbox()
     {
