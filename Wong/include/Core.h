@@ -25,3 +25,5 @@
 #define WG_ASSERT(x, ...)
 #define WG_CORE_ASSERT(x, ...)
 #endif
+
+#define WG_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

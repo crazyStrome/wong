@@ -8,11 +8,11 @@ public:
 
     void OnUpdate() override
     {
-        WG_INFO("ExampleLayer::Update");
+        // WG_INFO("ExampleLayer::Update");
     }
     void OnEvent(Wong::Event &event) override
     {
-        WG_TRACE("{0}", event);
+        // WG_TRACE("{0}", event);
     }
 };
 

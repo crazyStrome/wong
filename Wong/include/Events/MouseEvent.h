@@ -97,3 +97,6 @@ namespace Wong
         EVENT_CLASS_TYPE(MouseButtonReleased)
     };
 }
+
+FORMAT_EVENT_FUNC(Wong::MouseButtonPressedEvent)
+FORMAT_EVENT_FUNC(Wong::MouseScrolledEvent)
