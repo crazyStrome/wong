@@ -8,20 +8,23 @@ project "Wong"
     pchsource "include/wgpch.h"
     
     files {
-        "src/**.cc"
+        "src/**.cc",
+        "Platform/src/OpenGL/*.cc",
     }
     
     includedirs {
         "include",
         "%{Includedir.spdlog}",
         "%{Includedir.GLFW}",
-        "%{Includedir.Glad}"
+        "%{Includedir.Glad}",
+        "%{Includedir.ImGui}",
     }
 
     links {
         "GLFW",
         "GL",
         "Glad",
+        "ImGui",
     }
     
     filter { "configurations:Debug" }

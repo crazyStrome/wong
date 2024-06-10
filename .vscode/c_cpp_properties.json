@@ -6,6 +6,8 @@
                 "${workspaceFolder}/Wong/include",
                 "${workspaceFolder}/Wong/Platform/include",
                 "${workspaceFolder}/Wong/vendor/spdlog/include",
+                "${workspaceFolder}/Wong/vendor/Glad/include",
+                "${workspaceFolder}/Wong/vendor/ImGui",
                 "${workspaceFolder}/Wong/vendor/GLFW/include"
             ],
             "forcedInclude": [],

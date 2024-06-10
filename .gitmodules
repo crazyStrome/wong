@@ -4,3 +4,6 @@
 [submodule "Wong/vendor/GLFW"]
 	path = Wong/vendor/GLFW
 	url = https://github.com/crazyStrome/glfw
+[submodule "Wong/vendor/ImGui"]
+	path = Wong/vendor/ImGui
+	url = https://github.com/crazyStrome/imgui

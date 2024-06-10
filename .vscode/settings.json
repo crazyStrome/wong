@@ -10,5 +10,6 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.ignoreCMakeListsMissing": true
 }

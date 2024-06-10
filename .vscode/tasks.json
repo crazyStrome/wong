@@ -2,35 +2,6 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "构建 wong",
-            "command": "/usr/bin/g++",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${workspaceFolder}/Wong/src/*.cc",
-                "-I",
-                "${workspaceFolder}/Wong/include",
-                "-I",
-                "${workspaceFolder}/Wong/vendor/spdlog/include",
-                "-fPIC",
-                "-shared",
-                "-o",
-                "${workspaceFolder}/bin/libwong.so"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "调试器生成的任务。"
-        },
-        {
-            "type": "cppbuild",
             "label": "构建 sanbox",
             "command": "/usr/bin/g++",
             "args": [
@@ -40,12 +11,14 @@
                 "-I",
                 "${workspaceFolder}/Wong/include",
                 "-I",
+                "${workspaceFolder}/Wong/Platform/include",
+                "-I",
                 "${workspaceFolder}/Wong/vendor/spdlog/include",
                 "-L",
-                "${workspaceFolder}/bin/",
+                "${workspaceFolder}/bin/Debug-linux-x86_64/Wong",
                 "-Wl,-rpath",
-                "${workspaceFolder}/bin/",
-                "-lwong",
+                "${workspaceFolder}/bin/Debug-linux-x86_64/Wong",
+                "-lWong",
                 "-o",
                 "${workspaceFolder}/bin/Sandbox"
             ],

@@ -4,9 +4,14 @@
 
 namespace Wong
 {
+    Application *Application::s_Instance = nullptr;
+
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
     Application::Application()
     {
+        WG_CORE_ASSERT(s_Instance == nullptr, "Alrealdy init Application");
+        s_Instance = this;
+
         m_Window = std::unique_ptr<Window>(Window::Create());
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
@@ -37,11 +42,13 @@ namespace Wong
     void Application::PushLayer(Layer *layer)
     {
         m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer *overlay)
     {
         m_LayerStack.PushOverlay(overlay);
+        overlay->OnAttach();
     }
 
     bool Application::OnWindowClose(WindowCloseEvent &e)

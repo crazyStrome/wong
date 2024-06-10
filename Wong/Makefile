@@ -22,7 +22,7 @@ RESCOMP = windres
 PCH = include/wgpch.h
 PCH_PLACEHOLDER = $(OBJDIR)/$(notdir $(PCH))
 GCH = $(PCH_PLACEHOLDER).gch
-INCLUDES += -Iinclude -Ivendor/spdlog/include -Ivendor/GLFW/include -Ivendor/Glad/include -IPlatform/include
+INCLUDES += -Iinclude -Ivendor/spdlog/include -Ivendor/GLFW/include -Ivendor/Glad/include -Ivendor/ImGui -IPlatform/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g
@@ -42,24 +42,24 @@ TARGETDIR = ../bin/Debug-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
 OBJDIR = ../bin-int/Debug-linux-x86_64/Wong
 DEFINES += -DWG_ENABLE_ASSERTS -DWG_DEBUG -DWG_PLATFORM_LINUX -DGLFW_INCLUDE_NONE
-LIBS += ../bin/Debug-linux-x86_64/GLFW/libGLFW.a ../bin/Debug-linux-x86_64/Glad/libGlad.a -lGL
-LDDEPS += ../bin/Debug-linux-x86_64/GLFW/libGLFW.a ../bin/Debug-linux-x86_64/Glad/libGlad.a
+LIBS += ../bin/Debug-linux-x86_64/GLFW/libGLFW.a ../bin/Debug-linux-x86_64/Glad/libGlad.a ../bin/Debug-linux-x86_64/ImGui/libImGui.a -lGL
+LDDEPS += ../bin/Debug-linux-x86_64/GLFW/libGLFW.a ../bin/Debug-linux-x86_64/Glad/libGlad.a ../bin/Debug-linux-x86_64/ImGui/libImGui.a
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
 OBJDIR = ../bin-int/Release-linux-x86_64/Wong
 DEFINES += -DWG_RELEASE -DWG_PLATFORM_LINUX -DGLFW_INCLUDE_NONE
-LIBS += ../bin/Release-linux-x86_64/GLFW/libGLFW.a ../bin/Release-linux-x86_64/Glad/libGlad.a -lGL
-LDDEPS += ../bin/Release-linux-x86_64/GLFW/libGLFW.a ../bin/Release-linux-x86_64/Glad/libGlad.a
+LIBS += ../bin/Release-linux-x86_64/GLFW/libGLFW.a ../bin/Release-linux-x86_64/Glad/libGlad.a ../bin/Release-linux-x86_64/ImGui/libImGui.a -lGL
+LDDEPS += ../bin/Release-linux-x86_64/GLFW/libGLFW.a ../bin/Release-linux-x86_64/Glad/libGlad.a ../bin/Release-linux-x86_64/ImGui/libImGui.a
 
 else ifeq ($(config),dist)
 TARGETDIR = ../bin/Dist-linux-x86_64/Wong
 TARGET = $(TARGETDIR)/libWong.so
 OBJDIR = ../bin-int/Dist-linux-x86_64/Wong
 DEFINES += -DWG_DIST -DWG_PLATFORM_LINUX -DGLFW_INCLUDE_NONE
-LIBS += ../bin/Dist-linux-x86_64/GLFW/libGLFW.a ../bin/Dist-linux-x86_64/Glad/libGlad.a -lGL
-LDDEPS += ../bin/Dist-linux-x86_64/GLFW/libGLFW.a ../bin/Dist-linux-x86_64/Glad/libGlad.a
+LIBS += ../bin/Dist-linux-x86_64/GLFW/libGLFW.a ../bin/Dist-linux-x86_64/Glad/libGlad.a ../bin/Dist-linux-x86_64/ImGui/libImGui.a -lGL
+LDDEPS += ../bin/Dist-linux-x86_64/GLFW/libGLFW.a ../bin/Dist-linux-x86_64/Glad/libGlad.a ../bin/Dist-linux-x86_64/ImGui/libImGui.a
 
 endif
 
@@ -74,12 +74,16 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/Application.o
+GENERATED += $(OBJDIR)/ImGuiLayer.o
+GENERATED += $(OBJDIR)/ImGuiOpenGLRenderer.o
 GENERATED += $(OBJDIR)/Layer.o
 GENERATED += $(OBJDIR)/LayerStack.o
 GENERATED += $(OBJDIR)/LinuxWindow.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Window.o
 OBJECTS += $(OBJDIR)/Application.o
+OBJECTS += $(OBJDIR)/ImGuiLayer.o
+OBJECTS += $(OBJDIR)/ImGuiOpenGLRenderer.o
 OBJECTS += $(OBJDIR)/Layer.o
 OBJECTS += $(OBJDIR)/LayerStack.o
 OBJECTS += $(OBJDIR)/LinuxWindow.o
@@ -151,7 +155,13 @@ endif
 $(OBJDIR)/LinuxWindow.o: Platform/src/Linux/LinuxWindow.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/ImGuiOpenGLRenderer.o: Platform/src/OpenGL/ImGuiOpenGLRenderer.cc
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Application.o: src/Application.cc
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/ImGuiLayer.o: src/ImGui/ImGuiLayer.cc
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) -include $(PCH_PLACEHOLDER) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Layer.o: src/Layer.cc

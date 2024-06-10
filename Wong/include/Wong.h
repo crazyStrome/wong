@@ -6,6 +6,7 @@
 #include "Events/MouseEvent.h"
 #include "Events/KeyEvent.h"
 #include "Layer.h"
+#include "ImGui/ImGuiLayer.h"
 
 // -------------- entry point-----------------
 #include "EntryPoint.h"

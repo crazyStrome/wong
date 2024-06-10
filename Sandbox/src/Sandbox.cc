@@ -23,6 +23,7 @@ public:
     Sandbox()
     {
         PushLayer(new ExapmleLayer());
+        PushOverlay(new Wong::ImGuiLayer());
     }
     ~Sandbox()
     {
