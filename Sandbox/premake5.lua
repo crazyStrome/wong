@@ -22,14 +22,17 @@ project "Sandbox"
             "WG_DEBUG"
         }
         symbols "On"
+        runtime "Debug"
     
     filter "configurations:Release"
         defines "WG_RELEASE"
         symbols "On"
+        runtime "Release"
     
     filter "configurations:Dist"
         defines "WG_DIST"
         symbols "On"
+        runtime "Release"
         
 	filter "system:linux" 
         defines "WG_PLATFORM_LINUX"

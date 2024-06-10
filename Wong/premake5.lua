@@ -32,15 +32,18 @@ project "Wong"
             "WG_ENABLE_ASSERTS",
             "WG_DEBUG"
         }
+        runtime "Debug"
         symbols "On"
     
     filter "configurations:Release"
         defines "WG_RELEASE"
         symbols "On"
+        runtime "Release"
     
     filter "configurations:Dist"
         defines "WG_DIST"
         symbols "On"
+        runtime "Release"
         
     filter "system:linux" 
         includedirs {
