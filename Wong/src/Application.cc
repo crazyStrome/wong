@@ -1,6 +1,7 @@
 #include <iostream>
 #include "glad/glad.h"
 #include "Application.h"
+#include "Linux/LinuxInput.h"
 
 namespace Wong
 {

@@ -34,5 +34,7 @@ namespace Wong
         void SetEventCallback(const EventCallbackFn &callback) override { m_Data.EventCallback = callback; }
         void SetVSync(bool enable) override;
         bool IsVSync() const override;
+
+        virtual void *GetNativeWindow() const override;
     };
 }

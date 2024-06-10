@@ -82,8 +82,7 @@ namespace Wong
                             {
                                 WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
                                 KeyTypedEvent event(codepoint);
-                                data.EventCallback(event);
-                            });
+                                data.EventCallback(event); });
 
         glfwSetMouseButtonCallback(m_Window, [](GLFWwindow *window, int button, int action, int mods)
                                    { 
@@ -153,5 +152,9 @@ namespace Wong
     bool LinuxWindow::IsVSync() const
     {
         return m_Data.VSync;
+    }
+    void *LinuxWindow::GetNativeWindow() const
+    {
+        return m_Window;
     }
 }
