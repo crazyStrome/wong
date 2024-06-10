@@ -61,7 +61,7 @@ namespace Wong
     {
         while (m_Running)
         {
-            glClearColor(1, 0, 1, 1);
+            glClearColor(169.0f / 255.0f, 205.0f / 255, 221.0f / 255, 1);
             glClear(GL_COLOR_BUFFER_BIT);
             for (Layer *layer : m_LayerStack)
             {

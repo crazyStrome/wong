@@ -8,7 +8,10 @@ public:
 
     void OnUpdate() override
     {
-        // WG_INFO("ExampleLayer::Update");
+        if (Wong::Input::IsKeyPressed(WG_KEY_TAB))
+        {
+            WG_INFO("Tab key is pressed");
+        }
     }
     void OnEvent(Wong::Event &event) override
     {
